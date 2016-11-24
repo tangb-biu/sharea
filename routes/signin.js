@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 router.get('/', function(req, res, next){
-	res.send(req.flush());
+	//res.send(req.flush());
+	res.send("需要登陆");
 })
 router.post('/', function(req, res, next){
 	res.send(req.flush());

@@ -1,0 +1,28 @@
+# ignore Maven generated target folders
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# ignore eclipse files
+.project
+.classpath
+.settings
+.metadata
+
+# ignore node modules files
+node_modules
+
+logs/
+src/main/resources/datasource.properties
+src/main/java/quartz.properties
+/target/
+/target/
+
+# ignore intellij IDEA files
+.idea
