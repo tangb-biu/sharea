@@ -1,0 +1,10 @@
+.panel-login {
+	margin-top: 50px;
+}
+.login-container{
+	min-height: 500px;
+}
+.login-left{
+	border: 1px solid;
+	height: 480px;
+}
