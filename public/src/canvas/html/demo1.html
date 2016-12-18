@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo1</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin:0;
+			box-sizing: border-box;
+		}
+		#J_demo{
+			width: 500px;
+			height: 300px;
+			margin:auto;
+		}
+	</style>
+</head>
+<body>
+<div id="J_demo"></div>
+<script type="text/javascript" src="../js/core/dom.js"></script>
+<script type="text/javascript">
+	
+	var dom = document.getElementById("J_demo");
+	var ctx = getCtx(dom);
+	var canvas = ctx.canvas;
+	var center = {
+		x: 100,
+		y: 50
+	};
+	var old = {};
+	var radius = 50;
+	var isMouseDown = false;
+	ctx.save();
+	ctx.beginPath();
+	ctx.arc(center.x,center.y,radius,0,2*Math.PI);
+	ctx.fillStyle = "blue";
+	ctx.fill();
+	ctx.restore();
+	canvas.addEventListener("mousedown", function(e){
+		var point = handlerMouse(canvas, e);
+		old.x = point.x;
+		old.y = point.y;
+		isMouseDown = true;
+		//center = point;
+	});
+	canvas.addEventListener("mouseup", function(e){
+		isMouseDown = false;
+	});
+	canvas.addEventListener("mouseover", function(e){
+		isMouseDown = false;
+	});
+	canvas.addEventListener("mousemove", function(e){
+		var point = handlerMouse(canvas, e);
+		var len = Math.sqrt((point.x-center.x)*(point.x-center.x) + (point.y-center.y)*(point.y-center.y));
+		if(len<=radius){
+			canvas.style.cursor = 'pointer';
+			if(isMouseDown){
+				center.x = center.x + (point.x - old.x);
+				center.y = center.y + (point.y - old.y);
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.save();
+				ctx.beginPath();
+				ctx.arc(center.x, center.y, radius, 0, 2*Math.PI);
+				ctx.fillStyle = "blue";
+				ctx.fill();
+				ctx.restore();
+				
+				// 设置新圆心
+				old.x = point.x;
+				old.y = point.y;
+			}
+		}else{
+			canvas.style.cursor = 'default';
+		}
+	})
+	// ctx.save();
+	// ctx.beginPath();
+	// ctx.arc(300,75,50,0,2*Math.PI);
+	// ctx.fillStyle = "blue";
+	// ctx.fill();
+	// ctx.clip();
+	// ctx.clearRect(0, 0, canvas.width, canvas.height);
+	// ctx.restore();
+</script>
+</body>
+</html>
